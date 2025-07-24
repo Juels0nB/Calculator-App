@@ -1,4 +1,4 @@
-#🧮 React Calculator
+# 🧮 React Calculator
 This is a simple and functional Calculator App built with React, as part of my 30-Week React Challenge (Week 5).
 
 ✅ Features

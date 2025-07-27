@@ -1,35 +1,70 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
+import CalculatorDisplay from "./components/CalculatorDisplay";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [num, setNum] = useState("0");
+  const [operator, setOperator] = useState(null);
+  const [firstOperand, setFirstOperand] = useState(null);
+
+  function handleButtonClick(value) {
+    if (value === "C") {
+      setNum("0");
+      setOperator(null);
+      setFirstOperand(null);
+    } else if (value === "D") {
+      setNum(num.slice(0, -1) || "0");
+    } else if (value === "%") {
+      if (num !== "0") {
+        setNum(String(parseFloat(num) / 100));
+      }
+    } else if (value === "," || value === ".") {
+      if (!num.includes(".")) {
+        setNum(num + ".");
+      }
+    } else if (value === "=") {
+      if (firstOperand !== null && operator) {
+        const secondOperand = parseFloat(num);
+        let result;
+        switch (operator) {
+          case "+":
+            result = firstOperand + secondOperand;
+            break;
+          case "-":
+            result = firstOperand - secondOperand;
+            break;
+          case "×":
+            result = firstOperand * secondOperand;
+            break;
+          case "÷":
+            result = firstOperand / secondOperand;
+            break;
+
+          default:
+        }
+        setNum(String(result));
+        setOperator(null);
+        setFirstOperand(null);
+      }
+    } else if (["+", "-", "×", "÷"].includes(value)) {
+      setFirstOperand(parseFloat(num));
+      setOperator(value);
+      setNum("0");
+    } else {
+      setNum(num === "0" ? value : num + value);
+    }
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="min-h-screen flex items-center justify-center bg-slate-500 p-6">
+      <div className="w-full max-w-md space-y-6">
+        <h1 className="text-4xl text-center text-white font-mono font-bold drop-shadow-lg mb-4">
+          Calculator
+        </h1>
+        <CalculatorDisplay handleButtonClick={handleButtonClick} num={num} />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;

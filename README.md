@@ -1,8 +1,24 @@
-# React + Vite
+# 🧮 React Calculator
+This is a simple and functional Calculator App built with React, as part of my 30-Week React Challenge (Week 5).
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+✅ Features
+Basic operations: addition, subtraction, multiplication, division
 
-Currently, two official plugins are available:
+Clear and delete functionality
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Display logic and state handling
+
+Responsive and clean layout with Tailwind CSS
+
+🛠️ What I Learned
+Handling input logic and operator chaining
+
+Managing component state and updates with useState
+
+Structuring components cleanly for better readability and maintenance
+
+Styling the UI using utility-first CSS (Tailwind)
+
+🗓️ Project 5 of 30 – Focused on combining logic + design in a simple interface.
+
+Feel free to clone, test, and build on it! 💻
